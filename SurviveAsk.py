@@ -1,6 +1,6 @@
 '''
 you'll need to make file in your TF2 Directory (tf/cfg) called autoexec.cfg if it doesnt exist, and add this to it:
-    rcon_password SourceRCON_@_CGE
+    rcon_password (choose a password)
     net_start
 
 after that, you need to add '-usercon' to your steam launch options for tf2
@@ -26,8 +26,10 @@ from rcon.source import Client
 #import keyboard 
 #probably gonna implement a killswitch soon, just been having issues with the keyboard lib on linux
 
+password = input("Please enter your rcon password:")
+
 def Command(commandString):
-    with Client('127.0.1.1', 27015, passwd='SourceRCON_@_CGE') as client:
+    with Client('127.0.1.1', 27015, passwd=password) as client:
         client.run(commandString)
 
 Command('spectate')
