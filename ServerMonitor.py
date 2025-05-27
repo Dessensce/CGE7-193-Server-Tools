@@ -1,7 +1,17 @@
+'''
+make sure you have these librarys installed:
+    python-a2s
+    tkinter
+    webbrowser
+    time
+
+install these with pip install python-a2s tkinter webbrowser time
+'''
+
+
 import a2s
 import time
 import tkinter as tk
-from rcon.source import Client
 import webbrowser
 
 address = ("wavespray.dathost.net", 22912)
