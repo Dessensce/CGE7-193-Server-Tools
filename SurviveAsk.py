@@ -23,21 +23,43 @@ also feel free to tinker with this, this is open source for a reason!
 
 import time
 from rcon.source import Client
-#import keyboard 
-#probably gonna implement a killswitch soon, just been having issues with the keyboard lib on linux
+
+valid_positions = {
+    "824.000000 -1144.000000",
+    "568.000000 -1144.000000",
+    "824.000000 -1216.000000",
+    "568.000000 -1216.000000",
+    "824.000000 -1280.000000",
+    "568.000000 -1280.000000",
+    "568.000000 -1088.000000",
+    "824.000000 -1088.000000"
+}
 
 password = input("Please enter your rcon password:")
 
 def Command(commandString):
     with Client('127.0.1.1', 27015, passwd=password) as client:
         client.run(commandString)
-
+        
 Command('spectate')
 Command('jointeam auto')
 time.sleep(1)
 Command('joinclass engineer')
+Command('unbind w; unbind a; unbind s; unbind d; unbind space; unbind ctrl')
 time.sleep(0.5)
+Command('slot3')
 
 while True:
-    Command('eureka_teleport 0')
-    time.sleep(1)
+    pos = Command('getpos')
+
+    posNoAng = pos.split(';')[0]
+    TruePos = posNoAng.replace("setpos ", "")
+    xy_pos = " ".join(TruePos.split()[:2])
+    print(TruePos)
+    if xy_pos in valid_positions:
+        break
+    else:
+        Command('eureka_teleport 0')
+        time.sleep(1)
+
+Command('bind w +forward; bind a +moveleft; bind s +back; bind d +moveright; bind space +jump; bind ctrl +duck')
