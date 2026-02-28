@@ -1,3 +1,6 @@
+# NOTE:
+this isnt needed anymore as CGE7-193 is shutdown, feel free to use this if you want to use RCON
+
 # CGE7-193-Server-Tools
 Tools for The Interloper ARG, and Specifically the CGE7-193
 
